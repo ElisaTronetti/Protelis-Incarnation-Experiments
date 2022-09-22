@@ -1,0 +1,21 @@
+incarnation: protelis
+
+network-model:
+  type: ConnectWithinDistance
+  parameters: [0.5]
+
+_gradient: &gradient
+  - time-distribution: 1
+    program: org:protelis:tutorial:distanceTo2
+  - program: send
+
+deployments:
+  type: Grid
+  parameters: [-5, -5, 5, 5, 0.25, 0.25, 0.1, 0.1]
+  contents:
+    in:
+      type: Rectangle
+      parameters: [-6, -6, 2, 2]
+    molecule: source
+    concentration: true
+  programs: *gradient

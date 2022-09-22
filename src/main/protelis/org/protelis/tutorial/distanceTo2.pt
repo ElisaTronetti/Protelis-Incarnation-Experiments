@@ -1,0 +1,14 @@
+module org:protelis:tutorial:distanceTo2
+
+def myPosition() = self.getDevicePosition()
+
+def nbrRange() = nbr(myPosition()).distanceTo(myPosition())
+
+rep (d <- POSITIVE_INFINITY) {
+    // mux is used to avoid exclusive branching that would be caused by using if
+	mux (env.has("source")) {
+		0
+	} else {
+		foldMin(POSITIVE_INFINITY, nbr(d) + nbrRange())
+	}
+}
